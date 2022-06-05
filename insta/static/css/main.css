@@ -173,3 +173,11 @@ header{
   margin: 0px 0px 8px;
   padding: 0px 21px; 
 }
+
+.caption{
+  display: inline-block;
+  width: 100%;
+  padding: 0px 16px;
+}
+
+
