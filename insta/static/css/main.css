@@ -151,3 +151,11 @@ header{
   margin: 4px 0px 0px;
   padding: 0px 16px;
 }
+
+.engagement a{
+  padding: 7px;
+  font-size: 25px;
+  color: slategray;
+  font-weight: 600;
+
+}
