@@ -21,3 +21,7 @@ header{
   flex-wrap: nowrap;
   width: 100%;
 }
+
+.navigation a{
+  color: #111;
+}
