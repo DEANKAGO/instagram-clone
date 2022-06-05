@@ -15,7 +15,6 @@ header{
 .navigation{
   display: flex;
   flex-direction: row;
-  /* text-align: center; */
   justify-content: center;
   padding: 26px 20px;
   flex-wrap: nowrap;
@@ -42,4 +41,10 @@ header{
   border-left: 1.5px solid #111;
   height: 30px;
   margin-left: 20px; 
+}
+
+.contact_icons{
+  display: flex;
+  justify-content: flex-end;
+  width: 30%;
 }
