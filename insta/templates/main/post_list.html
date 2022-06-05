@@ -1,41 +1,32 @@
-{% extends 'main/base.html' %}
-{% block content %}
-
-{% for post in posts %}
+{% extends 'main/base.html' %} {% block content %} {% for post in posts %}
 <div class="card">
   <div class="card_header">
-      <div class="profile_image">
-
-      </div>
-      <div class="post_info">
-          <div class="post_name">{{ post.author }}</div>
-          <div class="post_location">Nairobi</div>
-      </div>
-      <div class="post_options"><i class="fas fa-ellipsis-h"></i></div>
+    <div class="profile_image"></div>
+    <div class="post_info">
+      <div class="post_name">{{ post.author }}</div>
+      <div class="post_location">Nairobi</div>
+    </div>
+    <div class="post_options"><i class="fas fa-ellipsis-h"></i></div>
   </div>
   <div class="post_image">
-      {% if post.image %}
-          <img src="{{ post.image.url }}" alt="">
-      {% endif %}
+    {% if post.image %}
+    <img src="{{ post.image.url }}" alt="" />
+    {% endif %}
   </div>
   <div class="engagement">
-      <a href=""><i class="far fa-heart"></i></a>
-      <a href=""><i class="far fa-comment"></i></a>
-      <a href=""><i class="far fa-share-square"></i></a>
-      <a href=""><i class="far fa-bookmark"></i></a>                
+    <a href=""><i class="far fa-heart"></i></a>
+    <a href=""><i class="far fa-comment"></i></a>
+    <a href=""><i class="far fa-solid fa-arrow-up-from-bracket"></i></a>
+    <a href=""><i class="far fa-bookmark"></i></a>
   </div>
   <div class="likes">
-      <a href="">420</a>
+    <a href="">420</a>
   </div>
   <div class="caption">
-      <a href=""><h2>{{ post.author }}</h2> </a>
-      <span><p>{{post.description}}</p></span>
+    <a href=""><h2>{{ post.author }}</h2> </a>
+    <span><p>{{post.description}}</p></span>
   </div>
-  <div class="time_posted">
-      {{ post.date_created | timesince }} AGO
-  </div>
+  <div class="time_posted">{{ post.date_created | timesince }} AGO</div>
 </div>
 
-{% endfor %}
-
-{% endblock %}
+{% endfor %} {% endblock %}
