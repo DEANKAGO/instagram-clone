@@ -25,3 +25,10 @@ header{
 .navigation a{
   color: #111;
 }
+
+.instalogo{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 30%;
+}
