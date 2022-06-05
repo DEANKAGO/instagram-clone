@@ -79,3 +79,13 @@ header{
   top:83px;
   left: 0px; 
 }
+
+.card{
+  background-color: #fff;
+  margin: 0 auto;
+  width: 614px;
+  height: auto;
+  border: .8px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 60px; 
+}
