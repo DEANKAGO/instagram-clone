@@ -94,3 +94,8 @@ header{
   padding: 10px;
 
 }
+
+.card_header a{
+  text-decoration: none;
+  color: black;
+}
