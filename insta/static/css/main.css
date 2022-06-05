@@ -190,3 +190,11 @@ header{
   margin-left: -5px;
   padding-right: 5px; 
 }
+
+.caption span{
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  display: inline-block;
+  margin-right: 15px; 
+}
