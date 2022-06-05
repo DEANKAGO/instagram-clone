@@ -37,3 +37,9 @@ header{
   font-size: 25px;
   padding-left: 10px;  
 }
+
+.vl{
+  border-left: 1.5px solid #111;
+  height: 30px;
+  margin-left: 20px; 
+}
