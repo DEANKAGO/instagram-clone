@@ -1,0 +1,23 @@
+body{
+  background-color: #ffff;
+}
+
+header{
+  background-color: #FAFAFA;
+  border-bottom: 1px solid #ccc;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+.navigation{
+  display: flex;
+  flex-direction: row;
+  /* text-align: center; */
+  justify-content: center;
+  padding: 26px 20px;
+  flex-wrap: nowrap;
+  width: 100%;
+}
