@@ -48,3 +48,9 @@ header{
   justify-content: flex-end;
   width: 30%;
 }
+
+.contact_icons a{
+  padding-left: 30px;
+  font-size: 25px;
+  font-weight: lighter; 
+}
