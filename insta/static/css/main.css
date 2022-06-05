@@ -89,3 +89,8 @@ header{
   border-radius: 4px;
   margin-bottom: 60px; 
 }
+
+.card_header{
+  padding: 10px;
+
+}
