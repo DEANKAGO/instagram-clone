@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from .forms import PostForm
 from .models import *
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 
 # Create your views here.
@@ -11,5 +12,7 @@ def postListView(request):
   context_object_name = 'posts'
 
   return render(request, 'main/post_list.html', locals())
+
+
 
 
