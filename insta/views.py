@@ -13,6 +13,16 @@ def postListView(request):
 
   return render(request, 'main/post_list.html', locals())
 
-
+def PostCreateView(request):
+    template_name = 'main/post_create.html'
+    form_class = PostForm
+    posts = Post.objects.all()     #.filter(created_date__lte=timezone.now())
+    #success_url = '/'
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        form.instance.author = self.request.user 
+        return super().form_valid(form)
+      
+  
 
 

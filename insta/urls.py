@@ -5,5 +5,6 @@ from . import views
 
 urlpatterns = [
   path('', views.postListView, name = 'post_list'),
+  path('new', views.PostCreateView, name = 'post_create'),
 ]
 
