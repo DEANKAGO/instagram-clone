@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="detail_card">
+    <div class="detail_image">
+        <img src="{{post.image.url }}" height="640" alt="">
+    </div>
+    <div class="post_detail_info">
+        <div class="card_header">
+            <div class="profile_image">
+                
+            </div>
+            <div class="post_info">
+                <div class="post_name"><a href="">{{ post.author }}</a></div>
+                <div class="post_location">Nairobi</div>
+            </div>
+            <div class="post_options"><a href=""><i class="fas fa-ellipsis-h"></i></a></div>
+        </div>
+        <div class="detail_bottom">
+            <div class="engagement">
+                <a href=""><i class="fas fa-heart"></i></a>
+                <a href="{% url 'post_detail' %}"><i class="far fa-comment"></i></a>
+                <a href=""><i class="far fa-share-square"></i></a>
+                <a href="" class="fa-bookmarks"><i class="far fa-bookmark"></i></a>
+            </div>
+            <div class="likes">
+                <a href="#">{{ post.likes.count }} likes</a>
+            </div>
+            <div class="time_posted">
+                {{post.date_created | timesince}} AGO
+            </div>
+            <div class="new_comment_section">
+                <form action="">
+                    <textarea name="" id="" class="text_comment_area" placeholder="Add a comment..." cols="30" rows="10"></textarea>
+                    
+                    <button type="submit">Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

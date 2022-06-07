@@ -10,7 +10,8 @@
   </div>
   <div class="post_image">
     {% if post.image %}
-    <img src="{{ post.image.url }}" alt="" />
+    <a href="{% url 'post_detail' %}"><img src="{{ post.image.url }}" alt="" /></a>
+    <!-- <img src="{{ post.image.url }}" alt="" /> -->
     {% endif %}
   </div>
   <div class="engagement">

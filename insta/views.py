@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -6,8 +6,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
-
-
+from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
+    
+   
 from .models import *
 from .forms import UploadForm, CreateUserForm
 
@@ -61,6 +62,7 @@ def postListView(request):
 
   return render(request, 'main/post_list.html', locals())
 
+
 def postCreateView(request):
   user = request.user
   form = UploadForm(instance=user)
@@ -69,10 +71,35 @@ def postCreateView(request):
     form = UploadForm(request.POST, request.FILES, instance=user)
     if form.is_valid():
       form.save()
-  return render(request, 'main/post_create.html', locals())
+    return redirect('post_list')
+  return render(request, 'main/post_create.html', {'form': form})
 
 
-    
+def PostDetailView(request):
+	template_name = 'main/details.html'
+	posts = Post.objects.all().filter(date_created__lte=timezone.now())
+	
+	def get_object(self):
+			id_ = self.kwargs.get("id")
+			return get_object_or_404(Post, id=id_)
+	return render(request, 'main/details.html', locals())
+
+
+def PostDeleteView(request):
+	template_name = 'main/delete.html'
+
+	def get_object(self):
+			id_=self.kwargs.get("id")
+			return get_object_or_404(Post, id=id_)
+
+	def get_success_url(self):
+			return reverse('post_list')
+	return render(request, 'main/delete.html', locals())				
+	
+
+
+def profile(request):
+	return render(request, 'main/profile.html', locals())
   
       
   
