@@ -1,14 +1,8 @@
 {% extends 'main/base.html' %} {% block content %} 
 {% load static %}
 
-<!doctype html>
-<html lang="en">
+
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="generator" content="">
     <title>Profile</title>
 
     <!-- Bootstrap core CSS -->
@@ -52,19 +46,27 @@
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-        {% if images|length > 0 %}
+        <!-- {% if images|length > 0 %}
         {% for image in images %}
         <div class="col">
           <div class="card shadow-sm">
 
-            <img src="{{image.Image.url}}" alt="{{image.text}}">
+            <img src="{{image.image.url}}" alt="">
+            <a href="{% url 'post_detail' %}"><img src="{{ image.image.url }}" alt="" /></a>
 
           </div>
         </div>
         {% endfor %}
         {% else %}
         <h2>No Images Uploaded </h2>
-        {% endif %}
+        {% endif %} -->
+
+        <div class="post_image">
+          {% if post.image %}
+          <a href="{% url 'post_detail' %}"><img src="{{ post.image.url }}" class="img-responsive" alt="" /></a>
+          <!-- <img src="{{ post.image.url }}" alt="" /> -->
+          {% endif %}
+        </div>
 
       </div>
     </div>
@@ -79,6 +81,5 @@
 
 
   </body>
-</html>
 
 {% endblock %}

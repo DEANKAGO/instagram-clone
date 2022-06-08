@@ -54,7 +54,7 @@ def logoutUser(request):
 
 
 
-
+@login_required(login_url='/login')
 def postListView(request):
   template_name = 'main/post_list.html'
   posts = Post.objects.all()
@@ -62,7 +62,7 @@ def postListView(request):
 
   return render(request, 'main/post_list.html', locals())
 
-
+@login_required
 def postCreateView(request):
   user = request.user
   form = UploadForm(instance=user)
@@ -72,7 +72,21 @@ def postCreateView(request):
     if form.is_valid():
       form.save()
     return redirect('post_list')
-  return render(request, 'main/post_create.html', {'form': form})
+  return render(request, 'main/post_create.html', locals())
+
+	# if request.method == 'POST':
+
+	# 	form = UploadForm(request.POST)
+	# 	if form.is_valid():
+	# 			print('valid')
+  # # else:
+  # #     form = UploadForm()
+  # return render(request, 'main/post_create.html', locals())
+
+
+
+
+
 
 
 def PostDetailView(request):
