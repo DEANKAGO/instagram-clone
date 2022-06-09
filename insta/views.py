@@ -63,17 +63,19 @@ def postListView(request):
 
 # @login_required
 def postCreateView(request):
-	if request.method == 'POST':
-		newphoto = Post()
-		newphoto.image = request.FILES['photo']
-		# print("newphoto.image")
-		newphoto.save()
-
-		# Post.objects.create()
-		return redirect('/')
-	else:
-		photos = Post.objects.all()
-		return render(request, 'main/post_create.html', locals())
+    user = request.user
+    form = UploadForm(instance=user)
+    if request.method == 'POST':
+        form = UploadForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            
+            new_post = Post.objects.create(author_id=user.id,
+                                image=form.cleaned_data['image'],
+                                description=form.cleaned_data['description'])
+            return redirect('post_list')
+        return redirect('/')
+    else:
+        return render(request, 'main/post_create.html', {'form': form})
 
 def delete(request, id):
 	if request.method == 'POST':
@@ -116,13 +118,18 @@ def delete(request, id):
 
 
 def PostDetailView(request):
-	template_name = 'main/details.html'
-	posts = Post.objects.all().filter(date_created__lte=timezone.now())
-	print(posts[0].image)
-	def get_object(self):
-			id_ = self.kwargs.get("id")
-			print(locals())
-			return get_object_or_404(Post, id=id_)
+	# template_name = 'main/details.html'
+	# post = get_object_or_404(Post, id=id)
+
+	# return render(request, 'main/details.html', {'post': post})
+	# template_name = 'main/details.html'
+	# posts = Post.objects.all().filter(date_created__lte=timezone.now())
+	# print(posts[0].image)
+	# def get_object(self):
+	# 		id_ = self.kwargs.get("id")
+	# 		print(locals())
+	# 		return get_object_or_404(Post, id=id_)
+	# posts = Post.objects.filter(id=id)
 	return render(request, 'main/details.html', locals())
 
 

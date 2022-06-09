@@ -10,7 +10,7 @@
   </div>
   <div class="post_image">
     {% if post.image %}
-    <a href="{% url 'post_detail' %}"><img src="{{ post.image.url }}" class="img-responsive" alt="" /></a>
+    <a href="{% url 'post_detail' %}"><img src="{{ post.image.url }}" class="img-responsive" alt=""/></a>
     <!-- <img src="{{ post.image.url }}" alt="" /> -->
     {% endif %}
   </div>
