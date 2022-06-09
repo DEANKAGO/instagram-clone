@@ -12,7 +12,7 @@ class Post(models.Model):
   description = models.TextField()
   date_created = models.DateTimeField(default=timezone.now)
   likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='post_likes')
-  id = models.CharField(max_length=50,primary_key=True, unique=True, blank=True)
+  # id = models.CharField(max_length=50,primary_key=True, unique=True, blank=True)
 
   def __str__(self):
     return self.description
