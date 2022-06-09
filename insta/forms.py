@@ -19,6 +19,9 @@ class UploadForm(forms.ModelForm):
     helper.form_method = 'POST'
     helper.add_input(Submit('Post', 'Post', css_class='btn-primary'))
 
+    image = forms.FileField()
+    description = forms.CharField(max_length=100)
+
     class Meta:
         model = Post
         fields = ['image', 'description']

@@ -10,12 +10,40 @@
     <div class="col-md-9">
         <div class="card card-body">
 
-            <form action="{% url 'post_create' %}" method="POST" enctype="multipart/form-data">
+            
+            <form action="" clas="uploadform" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                {{form}}
+                <input type="file" name="photo">
+                <button type="submit">Upload</button>
+            </form>
+            {% for image in images %}
+            <form action="/delete/{{photo.id}}" class="deleteform" method="POST">
+            {% csrf_token %}
+            <img src="{{ image.image.url }}" height=640 alt="">
+            <button class="del">Del</button>
+            </form>
+
+            <!-- <form action="{% url 'post_create' %}" method="POST" enctype="multipart/form-data">
                 {% crispy form %}
                 {% csrf_token %}
-                <!-- {{form.as_p}} -->
-                <!-- <input class="btn btn-primary" type="submit" name="post"> -->
-            </form>
+                {{form.as_p}} 
+                <input class="btn btn-primary" type="submit" name="post">
+            </form> -->
+            {% endfor %}
+
+            <style>
+                .uploadform {
+                    text-align: center;
+                    background: greenyellow;
+                    padding:10px;
+                }
+
+                .deleteform {
+                    display: inline-block;
+                    position: relative;
+                }
+            </style>
 
         </div>
     </div>
@@ -24,4 +52,4 @@
 </div>
 
 
-{% endblock %}
+{% endblock %} 

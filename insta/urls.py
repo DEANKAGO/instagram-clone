@@ -17,5 +17,7 @@ urlpatterns = [
   path('delete', views.DeleteView, name = 'post_delete'),
 
   path('profile', views.profile, name = 'profile'),
+
+  path('delete/<int:id>', views.delete, name = 'delete')
 ]
 

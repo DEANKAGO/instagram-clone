@@ -7,11 +7,10 @@ from django.contrib.auth.models import Group
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
-    
-   
+		
+	 
 from .models import *
-from .forms import UploadForm, CreateUserForm
-
+from .forms import * 
 # Create your views here.
 
 def registerPage(request):
@@ -56,32 +55,59 @@ def logoutUser(request):
 
 @login_required(login_url='/login')
 def postListView(request):
-  template_name = 'main/post_list.html'
-  posts = Post.objects.all()
-  context_object_name = 'posts'
+	template_name = 'main/post_list.html'
+	posts = Post.objects.all()
+	context_object_name = 'posts'
 
-  return render(request, 'main/post_list.html', locals())
+	return render(request, 'main/post_list.html', locals())
 
-@login_required
+# @login_required
 def postCreateView(request):
-  user = request.user
-  form = UploadForm(instance=user)
+	if request.method == 'POST':
+		newphoto = Post()
+		newphoto.image = request.FILES['photo']
+		# print("newphoto.image")
+		newphoto.save()
 
-  if request.method == 'POST':
-    form = UploadForm(request.POST, request.FILES, instance=user)
-    if form.is_valid():
-      form.save()
-    return redirect('post_list')
-  return render(request, 'main/post_create.html', locals())
+		# Post.objects.create()
+		return redirect('/')
+	else:
+		photos = Post.objects.all()
+		return render(request, 'main/post_create.html', locals())
+
+def delete(request, id):
+	if request.method == 'POST':
+		photo = Post.objects.all()
+		photo.delete()
+		return redirect('/')
+
+
+
+	# user = request.user
+	# form = UploadForm(instance=user)
+
+	# if request.method == 'POST':
+	# 	form = UploadForm(request.POST, request.FILES, instance=user)
+	# 	print("is_valid--->", form.is_valid())
+	# 	import pdb
+	# 	pdb.set_trace()
+	# 	if form.is_valid():
+	# 		print("cleaned_data--->", form.cleaned_data)
+	# 		form.save()
+	# 		return redirect('post_list')
+	# context= {'form': form }
+	# return render(request, 'main/post_create.html', context)
+
+
 
 	# if request.method == 'POST':
 
 	# 	form = UploadForm(request.POST)
 	# 	if form.is_valid():
 	# 			print('valid')
-  # # else:
-  # #     form = UploadForm()
-  # return render(request, 'main/post_create.html', locals())
+	# # else:
+	# #     form = UploadForm()
+	# return render(request, 'main/post_create.html', locals())
 
 
 
@@ -92,9 +118,10 @@ def postCreateView(request):
 def PostDetailView(request):
 	template_name = 'main/details.html'
 	posts = Post.objects.all().filter(date_created__lte=timezone.now())
-	
+	print(posts[0].image)
 	def get_object(self):
 			id_ = self.kwargs.get("id")
+			print(locals())
 			return get_object_or_404(Post, id=id_)
 	return render(request, 'main/details.html', locals())
 
@@ -114,8 +141,8 @@ def PostDeleteView(request):
 
 def profile(request):
 	return render(request, 'main/profile.html', locals())
-  
-      
-  
+	
+			
+	
 
 
