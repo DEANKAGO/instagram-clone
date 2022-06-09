@@ -13,5 +13,11 @@ class Post(models.Model):
   date_created = models.DateTimeField(default=timezone.now)
   likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='post_likes')
 
+  def save_post(self):
+        self.save()
+    
+  def delete_post(self): 
+      self.delete()
+
   def __str__(self):
     return self.description
